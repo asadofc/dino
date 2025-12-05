@@ -68,6 +68,30 @@ function init() {
     canvas.addEventListener('mousedown', handleCanvasInteraction);
     canvas.addEventListener('touchstart', handleCanvasInteraction, { passive: false });
 
+    // == Mobile Controls Wiring ==
+    const btnJump = document.getElementById('btnJump');
+    const btnDuck = document.getElementById('btnDuck');
+
+    if (btnJump && btnDuck) {
+        // Prevent default to stop scrolling, doubling events
+        const prevent = (e) => {
+            if (e.cancelable) e.preventDefault();
+            e.stopPropagation();
+        };
+
+        // Jump
+        btnJump.addEventListener('touchstart', (e) => { prevent(e); jump(); }, { passive: false });
+        btnJump.addEventListener('mousedown', (e) => { prevent(e); jump(); });
+
+        // Duck (Hold to duck)
+        btnDuck.addEventListener('touchstart', (e) => { prevent(e); duck(true); }, { passive: false });
+        btnDuck.addEventListener('mousedown', (e) => { prevent(e); duck(true); });
+
+        ['touchend', 'mouseup', 'mouseleave'].forEach(evt => {
+            btnDuck.addEventListener(evt, (e) => { prevent(e); duck(false); });
+        });
+    }
+
     // Initial render
     renderStartScreen();
 }
