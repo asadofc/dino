@@ -262,4 +262,53 @@ footer {
         width: 90%;
         padding: 1.5rem;
     }
+
+    .mobile-controls {
+        display: flex;
+        /* Show on mobile */
+    }
+}
+
+/* ==================== Mobile Controls ==================== */
+.mobile-controls {
+    display: none;
+    /* Hidden on desktop */
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.control-btn {
+    pointer-events: auto;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.85);
+    /* Dark semi-transparent */
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    transition: transform 0.1s;
+}
+
+.control-btn:active {
+    background: var(--accent-color);
+    color: var(--bg-color);
+    transform: scale(0.95);
+}
+
+.no-select {
+    -webkit-touch-callout: none;
+    user-select: none;
 }
