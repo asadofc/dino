@@ -83,16 +83,21 @@ header {
 }
 
 /* ==================== Game Wrapper (The "Box") ==================== */
+/* ==================== Game Wrapper (The "Box") ==================== */
 .game-wrapper {
     position: relative;
     border: 1px solid var(--line-color);
     background: var(--panel-bg);
     padding: 4px;
-    /* Slight inner spacing for the frame */
     box-shadow: 0 0 0 1px #000;
-    /* Double border effect */
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    /* Enforce Aspect Ratio */
+    aspect-ratio: 2 / 1;
 }
 
+/* ==================== Score Panel ==================== */
 /* ==================== Score Panel ==================== */
 .score-panel {
     position: absolute;
@@ -101,6 +106,8 @@ header {
     display: flex;
     gap: 1rem;
     z-index: 5;
+    pointer-events: none;
+    /* Pass touches through */
 }
 
 .score-item {
@@ -116,15 +123,17 @@ header {
 }
 
 /* ==================== Canvas ==================== */
+/* ==================== Canvas ==================== */
 #gameCanvas {
     display: block;
     width: 100%;
-    height: 400px;
+    height: 100%;
+    /* Fill container */
     background: #080808;
     border: 1px solid var(--line-color);
     cursor: crosshair;
     touch-action: none;
-    /* Moody CRT-like filter could go here, but keeping it clean thin-line */
+    image-rendering: pixelated;
 }
 
 /* ==================== Overlays (Start/Game Over) ==================== */
@@ -228,26 +237,29 @@ footer {
 /* ==================== Responsive ==================== */
 @media (max-width: 600px) {
     .container {
-        padding: 1rem;
+        padding: 0.5rem;
+        /* Less padding on mobile */
+        justify-content: flex-start;
+        /* Move up on mobile */
+        padding-top: 2rem;
     }
 
     .title {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
     }
 
     header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 0.5rem;
+        margin-bottom: 1rem;
     }
 
+    /* Remove height override, let aspect-ratio handle it */
     #gameCanvas {
-        height: 300px;
-        /* Smaller height on mobile */
+        height: 100%;
     }
 
-    button {
-        width: 100%;
+    .start-panel,
+    .game-over-panel {
+        width: 90%;
+        padding: 1.5rem;
     }
 }
