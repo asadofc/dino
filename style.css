@@ -1,1 +1,253 @@
+/* ==================== CSS Reset & Variables ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+:root {
+    /* Moody Industrial Palette */
+    --bg-color: #050505;
+    --panel-bg: #0a0a0a;
+    --line-color: #444;
+    --accent-color: #d4d4d4;
+    /* Off-white for high contrast logic */
+    --accent-dim: #666;
+    --highlight: #ffffff;
+
+    /* Typography */
+    --font-stack: 'Orbitron', 'Courier New', monospace;
+}
+
+/* ==================== Base Styles ==================== */
+body {
+    font-family: var(--font-stack);
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(var(--bg-color) 50%, rgba(0, 0, 0, 0.2) 50%),
+        linear-gradient(90deg, rgba(20, 20, 20, 1), rgba(20, 20, 20, 0));
+    background-size: 100% 4px, 100% 100%;
+    color: var(--accent-color);
+    min-height: 100vh;
+    overflow: hidden;
+    /* Lock scroll for app-feel */
+
+    /* Mobile optimization */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+/* ==================== Layout ==================== */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ==================== Header ==================== */
+header {
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--line-color);
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent-color);
+    margin: 0;
+}
+
+.title-gradient {
+    /* Removed gradient for solid moody look */
+    background: none;
+    -webkit-text-fill-color: initial;
+}
+
+.subtitle {
+    font-size: 0.8rem;
+    color: var(--accent-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+/* ==================== Game Wrapper (The "Box") ==================== */
+.game-wrapper {
+    position: relative;
+    border: 1px solid var(--line-color);
+    background: var(--panel-bg);
+    padding: 4px;
+    /* Slight inner spacing for the frame */
+    box-shadow: 0 0 0 1px #000;
+    /* Double border effect */
+}
+
+/* ==================== Score Panel ==================== */
+.score-panel {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 5;
+}
+
+.score-item {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    color: var(--accent-dim);
+}
+
+.score-value {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-left: 0.5rem;
+}
+
+/* ==================== Canvas ==================== */
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 400px;
+    background: #080808;
+    border: 1px solid var(--line-color);
+    cursor: crosshair;
+    touch-action: none;
+    /* Moody CRT-like filter could go here, but keeping it clean thin-line */
+}
+
+/* ==================== Overlays (Start/Game Over) ==================== */
+.game-over-panel,
+.start-panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+
+    background: rgba(10, 10, 10, 0.95);
+    border: 1px solid var(--line-color);
+    padding: 2rem;
+    text-align: center;
+
+    /* Boxy shadow */
+    box-shadow: 10px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.start-title,
+.game-over-title {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+    color: var(--highlight);
+    border-bottom: 1px solid var(--line-color);
+    padding-bottom: 1rem;
+}
+
+.dino-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+    filter: grayscale(100%);
+}
+
+.start-instructions {
+    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--accent-dim);
+}
+
+.start-instructions kbd {
+    border: 1px solid var(--accent-dim);
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    margin: 0 2px;
+}
+
+/* ==================== Buttons ==================== */
+button {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    font-family: var(--font-stack);
+    font-size: 1rem;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    background: var(--accent-color);
+    color: var(--bg-color);
+}
+
+button:active {
+    transform: translate(2px, 2px);
+}
+
+/* Remove glow effects */
+.btn-glow {
+    display: none;
+}
+
+/* ==================== Footer ==================== */
+footer {
+    display: none;
+    /* Minimalist */
+}
+
+/* ==================== Stars (Subtle Dust) ==================== */
+.stars {
+    opacity: 0.1;
+    z-index: -1;
+}
+
+/* ==================== Responsive ==================== */
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    #gameCanvas {
+        height: 300px;
+        /* Smaller height on mobile */
+    }
+
+    button {
+        width: 100%;
+    }
+}
