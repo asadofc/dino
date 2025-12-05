@@ -47,9 +47,10 @@ function init() {
     canvas = document.getElementById('gameCanvas');
     ctx = canvas.getContext('2d');
 
-    // Set canvas size
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    // Set FIXED internal resolution for consistent physics everywhere
+    // CSS will handle visual scaling
+    canvas.width = 800;
+    canvas.height = 400;
 
     // Load high score
     loadHighScore();
@@ -71,11 +72,8 @@ function init() {
     renderStartScreen();
 }
 
-function resizeCanvas() {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
-}
+// Resizing is handled by CSS aspect-ratio now
+
 
 // ==================== Game Loop ====================
 function startGame() {
@@ -592,4 +590,3 @@ function renderStartScreen() {
     // Draw static dino
     drawDino();
 }
-
