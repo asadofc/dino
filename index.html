@@ -1,1 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A modern, premium recreation of the classic Chrome Dino game with stunning visuals and smooth animations.">
+    <title>Dino Rush - Chrome Dino Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="container">
+        <header>
+            <h1 class="title">
+                <span class="title-gradient">DINO RUSH</span>
+            </h1>
+            <p class="subtitle">Press SPACE or TAP to jump</p>
+        </header>
+
+        <div class="game-wrapper">
+            <div class="score-panel">
+                <div class="score-item">
+                    <span class="score-label">SCORE</span>
+                    <span id="currentScore" class="score-value">00000</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">HIGH SCORE</span>
+                    <span id="highScore" class="score-value">00000</span>
+                </div>
+            </div>
+
+            <canvas id="gameCanvas"></canvas>
+
+            <div id="gameOverPanel" class="game-over-panel hidden">
+                <h2 class="game-over-title">GAME OVER</h2>
+                <p class="final-score">Your Score: <span id="finalScore">0</span></p>
+                <button id="restartBtn" class="restart-btn">
+                    <span class="btn-text">PLAY AGAIN</span>
+                    <span class="btn-glow"></span>
+                </button>
+            </div>
+
+            <div id="startPanel" class="start-panel">
+                <div class="start-content">
+                    <div class="dino-icon">🦖</div>
+                    <h2 class="start-title">Ready to Run?</h2>
+                    <p class="start-instructions">
+                        <kbd>SPACE</kbd> or <kbd>↑</kbd> to jump<br>
+                        <kbd>↓</kbd> to duck<br>
+                        Avoid obstacles and survive as long as you can!
+                    </p>
+                    <button id="startBtn" class="start-btn">
+                        <span class="btn-text">START GAME</span>
+                        <span class="btn-glow"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p class="footer-text">
+                Built with ❤️ | Classic Chrome Dino Game Reimagined
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
 
